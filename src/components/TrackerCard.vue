@@ -1,9 +1,7 @@
 <template>
   <div class="tracker-card-main">
     <v-card :class="`tracker-card-initial ${id}`" id :color="backgroundColor">
-      <v-card-title v-if="typeof id === 'number'">{{
-        prById(id).name
-      }}</v-card-title>
+      <v-card-title v-if="id !== 'new'">{{ prById(id).name }}</v-card-title>
       <v-tooltip left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -43,7 +41,7 @@ export default {
   },
   props: {
     id: {
-      type: [Number, String],
+      type: String,
       required: true,
     },
     openIcon: {
@@ -89,10 +87,6 @@ export default {
       else color = 'grey';
 
       this.backgroundColor = color;
-    },
-    handleUpdate() {
-      console.log('handlingUpdate');
-      this.setBgColor();
     },
   },
   computed: mapGetters(['orgData', 'prById']),

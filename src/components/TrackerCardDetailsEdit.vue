@@ -119,7 +119,6 @@ export default {
   computed: {
     ...mapGetters(['orgData', 'prById']),
     screenToggle() {
-      console.log(screen.width);
       return screen.width < 750;
     },
     updatedPr: function() {
@@ -155,9 +154,5 @@ export default {
 .tracker-card-details-edit-buttons {
   display: flex;
   justify-content: space-between;
-}
-@media only screen and (max-width: 750px) {
-  .tracker-card-details-edit-calendar {
-  }
 }
 </style>

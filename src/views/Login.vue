@@ -16,6 +16,9 @@
     <div class="login-main-buttons">
       <v-btn color="green lighten-1" @click="handleLogin">Submit</v-btn>
     </div>
+    <div>
+      <arbitrary-editor :arbitraryData="arbitraryData"></arbitrary-editor>
+    </div>
     <div class="login-main-error-section">
       <div v-if="error" class="login-main-error">Log In Failed</div>
     </div>
@@ -25,14 +28,30 @@
 <script>
 import { mapActions } from 'vuex';
 import router from '../router/index';
+import ArbitraryEditor from '../components/ArbitraryEditor.vue'
 export default {
   name: 'Login',
+  components: {
+    ArbitraryEditor
+  },
   data() {
     return {
       email: '',
       password: '',
       error: false,
     };
+  },
+  computed: {
+    arbitraryData: {
+      get() {
+        return { ...this.$store.state.arbitraryData.somethingComplex };
+      },
+      set(value) {
+        console.log('setting', value)
+        this.$store.commit('UPDATE_ARBITRARY', value);
+        return { ...this.$store.state.arbitraryData.somethingComplex };
+      }
+    }
   },
   methods: {
     ...mapActions(['loginUser']),

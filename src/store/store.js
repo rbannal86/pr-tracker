@@ -5,6 +5,13 @@ import FSServices from '../services/FSServices';
 Vue.use(Vuex);
 
 const state = {
+  arbitraryData: {
+    somethingComplex: {
+      a: 'nope',
+      b: 'yep',
+      c: true,
+    },
+  },
   prs: [],
   organization: {
     name: '',
@@ -38,6 +45,9 @@ const mutations = {
   },
   SET_PRS(state, payload) {
     state.prs = payload;
+  },
+  UPDATE_ARBITRARY(state, payload) {
+    state.arbitraryData = payload;
   },
 };
 
@@ -106,4 +116,5 @@ export default new Vuex.Store({
   getters,
   mutations,
   actions,
+  strict: true
 });
